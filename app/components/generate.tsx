@@ -10,11 +10,14 @@ import {
   PlaySquare,
   Move,
   Cpu,
+  ChevronDown,
 } from "lucide-react";
+
 
 const tools = [
   {
     name: "Image",
+    title: "new",
     desc: "Generate images with text prompts.",
     btn: "Open",
     icon: ImageIcon,
@@ -30,12 +33,13 @@ const tools = [
   {
     name: "Realtime",
     desc: "AI streaming in real-time.",
-    btn: "Try",
+    btn: "Open",
     icon: Mic,
     color: "bg-green-100 text-green-600 dark:bg-green-900/40 dark:text-green-300",
   },
   {
     name: "Edit",
+    title: "new",
     desc: "Edit generated images seamlessly.",
     btn: "Open",
     icon: Edit3,
@@ -43,6 +47,7 @@ const tools = [
   },
   {
     name: "Enhancer",
+    title: "new",
     desc: "Enhance details & upscale.",
     btn: "Open",
     icon: Sparkles,
@@ -50,6 +55,7 @@ const tools = [
   },
   {
     name: "Video Lipsync",
+    title: "new",
     desc: "Sync lips with voices.",
     btn: "Open",
     icon: PlaySquare,
@@ -57,6 +63,7 @@ const tools = [
   },
   {
     name: "Motion Transfer",
+    title: "new",
     desc: "Transfer motion between videos.",
     btn: "Open",
     icon: Move,
@@ -73,36 +80,55 @@ const tools = [
 
 export default function Generate() {
   return (
-    <section className="px-6 md:px-12 py-6">
-   
-      <h3 className="text-2xl md:text-3xl font-bold mb-10">Generate</h3>
+    <section className="px-6 md:px-10 py-6">
+         <div className="flex items-center justify-between mb-10">
+        <h3 className="text-2xl md:text-3xl font-bold">Generate</h3>
+        <button className="text-sm font-medium text-blue-600 cursor-pointer flex gap-2">
+          <ChevronDown className="w-4 "></ChevronDown> Show all
+        </button>
+      </div>
 
     
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {tools.map((tool, i) => (
           <div
             key={i}
-            className="flex  justify-between p-6   bg-white dark:bg-neutral-900 dark:border-neutral-800 shadow-sm hover:shadow-md transition"
+            className="flex  justify-between mt-8   "
           >
             <div>
               
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-start  gap-3 ">
                 <div
-                  className={`w-10 h-10 flex items-center justify-center  ${tool.color}`}
+                  className={`w-11 h-12  flex items-center justify-center  ${tool.color}`}
                 >
-                  <tool.icon className="w-5 h-5" />
+                  <tool.icon className="w-6 h-6 " />
                 </div>
-                <h4 className="text-lg font-semibold">{tool.name}</h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+                <div>
+                <div className="flex items-center gap-2">
+                  <h4 className="text-base font-semibold">{tool.name}</h4>
+                  {tool.title && (
+                    <span className="text-xs bg-blue-500 text-white px-2 py-0.5 rounded-full">
+                      {tool.title}
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400   ">
                 {tool.desc}
               </p>
+              
+                </div>
+               
+               
+                <button className="mb-7 self-end px-2 py-1.5 text-sm font-normal rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white ">
+                  
+              {tool.btn}
+            </button>
+              </div>
+            
             </div>
 
           
-            <button className="mt-8-fit px-4 py-2 text-sm font-medium border  dark:text-black hover:opacity-90 transition cursor-pointer hover:shadow-md rounded-2xl  ">
-              {tool.btn}
-            </button>
+          
           </div>
         ))}
       </div>
